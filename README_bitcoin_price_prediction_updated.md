@@ -31,7 +31,7 @@ The work included:
 - Multiple feature-selection experiments
 - Evaluation using MAE, RMSE, MAPE and R²
 
-A total of **17 major LSTM experiments** were documented. Different features such as ROC, `Close_Lag_7`, volume ROC, EMA, volatility, high-low range, SMA features and price/SMA ratios were tested. The experiment log shows that some feature additions improved performance while others reduced it, demonstrating why feature selection was treated as an experimental process rather than simply adding more variables. fileciteturn23file0L11-L39 fileciteturn23file1L50-L121
+A total of **17 major LSTM experiments** were documented. Different features such as ROC, `Close_Lag_7`, volume ROC, EMA, volatility, high-low range, SMA features and price/SMA ratios were tested. The experiment log shows that some feature additions improved performance while others reduced it, demonstrating why feature selection was treated as an experimental process rather than simply adding more variables.
 
 The complete experiment history is preserved in `results/Experiments and Results.pdf` so that the progression from the initial model to the final model can be reviewed.
 
@@ -50,7 +50,7 @@ The repository contains multiple stages of the Bitcoin dataset:
 - `dataset_upto_20august.csv` — working dataset prepared up to **20 August 2026**.
 - `bitcoin_dxy_merged.csv` — merged Bitcoin and DXY dataset used during the analysis.
 
-The project therefore combines a long historical period with newly collected observations from 2026. The final experiments were performed around the August 2026 evaluation period; the experiment log reports predictions for 21–22 August 2026. fileciteturn23file0L11-L16 fileciteturn23file1L50-L61
+The project therefore combines a long historical period with newly collected observations from 2026. The final experiments were performed around the August 2026 evaluation period; the experiment log reports predictions for 21–22 August 2026.
 
 ### Additional Market Data
 
