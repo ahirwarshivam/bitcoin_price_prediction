@@ -1,0 +1,47 @@
+{
+  "model_version": "Standalone-LSTM-v1.0",
+  "model_type": "Standalone LSTM",
+  "lookback_window": 30,
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Volume",
+    "RSI",
+    "MACD",
+    "MACD_Signal",
+    "BB_Middle",
+    "BB_Upper",
+    "BB_Lower",
+    "BB_Width",
+    "Daily_Return",
+    "ROC",
+    "Close_Lag_7",
+    "SMA_7",
+    "Price_SMA7_Ratio",
+    "SP500"
+  ],
+  "n_features": 17,
+  "target": "Close",
+  "train_split_ratio": 0.8,
+  "evaluation_metrics": {
+    "MAE": 3003.41,
+    "RMSE": 3812.59,
+    "R2": 0.9539,
+    "MAPE": 3.2
+  },
+  "reported_metrics": {
+    "MAE": 5537.18,
+    "RMSE": 5919.28,
+    "R2": 0.8889,
+    "ALT_MAPE": 4.35,
+    "ALT_RMSE": 5211.9,
+    "ALT_R2": 0.9138
+  },
+  "training_data_date_range": {
+    "start": "2018-02-04",
+    "end": "2026-08-20"
+  },
+  "total_samples": 3120,
+  "test_samples": 624
+}
