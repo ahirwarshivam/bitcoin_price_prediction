@@ -58,7 +58,7 @@ YFINANCE_TICKERS = {
 }
 
 # Binance API
-BINANCE_KLINES_URL = "https://api.binance.com/api/v3/klines"
+BINANCE_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
 BINANCE_SYMBOL = "BTCUSDT"
 
 # UI Theme Color Palette (Dark Financial Terminal)
