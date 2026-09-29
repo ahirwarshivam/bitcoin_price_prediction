@@ -1,4 +1,4 @@
-streamlit==1.63.0
+streamlit==1.49.1
 tensorflow==2.16.1
 keras==3.15.1
 protobuf==4.25.9
