@@ -238,6 +238,12 @@ def get_cached_market_data():
 with st.spinner("Connecting to live cryptocurrency and market data feeds..."):
     df_raw, df_feat, market_status = get_cached_market_data()
 
+st.write("DEBUG raw shape:", df_raw.shape)
+st.write("DEBUG feature shape:", df_feat.shape)
+st.write("DEBUG market status:", market_status)
+st.write("DEBUG latest raw rows:", df_raw.tail(3))
+st.write("DEBUG latest feature rows:", df_feat.tail(3))
+
 # Synchronize historical prediction errors up to the latest closed market day
 sync_history_with_market_data(df_feat)
 
