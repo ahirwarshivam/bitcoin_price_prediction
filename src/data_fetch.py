@@ -78,6 +78,7 @@ def fetch_yfinance_btc(start_date: str = "2026-08-20") -> pd.DataFrame:
         ticker = YFINANCE_TICKERS["BTC_FALLBACK"]
         start_dt = (pd.to_datetime(start_date) - timedelta(days=5)).strftime("%Y-%m-%d")
         df = yf.download(ticker, start=start_dt, interval="1d", progress=False)
+
         if df.empty:
             return pd.DataFrame()
 
@@ -85,10 +86,12 @@ def fetch_yfinance_btc(start_date: str = "2026-08-20") -> pd.DataFrame:
             df.columns = df.columns.get_level_values(0)
 
         df = df.reset_index()
+
         # Normalize date
         dates = pd.to_datetime(df["Date"])
+
         if dates.dt.tz is not None:
-            df["Date"] = dates.dt.tz_convert('UTC').dt.tz_localize(None).dt.normalize()
+            df["Date"] = dates.dt.tz_convert("UTC").dt.tz_localize(None).dt.normalize()
         else:
             df["Date"] = dates.dt.normalize()
 
@@ -96,7 +99,12 @@ def fetch_yfinance_btc(start_date: str = "2026-08-20") -> pd.DataFrame:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
 
+        # Yahoo Finance BTC-USD volume is quote-currency volume.
+        # Convert it to BTC base-asset volume to match Binance/training data.
+        df["Volume"] = df["Volume"] / df["Close"]
+
         return df[["Date", "Open", "High", "Low", "Close", "Volume"]]
+
     except Exception as e:
         print(f"[Warning] Yahoo Finance BTC fallback failed: {e}")
         return pd.DataFrame()
