@@ -10,7 +10,7 @@ An end-to-end, production-grade Bitcoin next-day closing price forecasting dashb
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [Project Overview](#-project-overview)
 - [Problem Statement](#-problem-statement)
@@ -32,7 +32,7 @@ An end-to-end, production-grade Bitcoin next-day closing price forecasting dashb
 
 ---
 
-## 🔭 Project Overview
+##  Project Overview
 
 Cryptocurrency markets operate 24/7/365 with extreme volatility, nonlinear price swings, and intricate dependencies on global macroeconomic liquidity. This project transforms historical cryptocurrency price analysis into a live, interactive, and self-updating financial intelligence platform.
 
@@ -45,13 +45,13 @@ When a user visits the dashboard:
 
 ---
 
-## 🎯 Problem Statement
+##  Problem Statement
 
 Traditional autoregressive models (e.g. ARIMA) assume linear relationships and often struggle with crypto market regimes. Deep learning models like LSTMs effectively capture sequential dependencies over multi-day lookback windows. The core objective of this project is to build an accurate, non-overfitting next-day Bitcoin forecasting system that incorporates both price action dynamics and macroeconomic sentiment.
 
 ---
 
-## 🌐 Data Sources & Market Feeds
+##  Data Sources & Market Feeds
 
 | Asset / Indicator | Ticker / Source | Role in System | Frequency |
 | :--- | :--- | :--- | :--- |
@@ -65,7 +65,7 @@ Traditional autoregressive models (e.g. ARIMA) assume linear relationships and o
 
 ---
 
-## ⚙️ Feature Engineering (17 Input Features)
+##  Feature Engineering (17 Input Features)
 
 The final LSTM receives a 3D input tensor of shape `(Batch_Size, 30, 17)`. The 17 features are arranged in the exact order below:
 
@@ -91,7 +91,7 @@ The final LSTM receives a 3D input tensor of shape `(Batch_Size, 30, 17)`. The 1
 
 ---
 
-## 📊 Exploratory Data Analysis (EDA) Insights
+##  Exploratory Data Analysis (EDA) Insights
 
 - **Strong Macro Correlation**: S&P 500 exhibits a strong positive correlation ($r = 0.90$) with Bitcoin closing prices over extended horizons.
 - **Gold Co-Movement**: Bitcoin and Gold share a price level correlation of $0.79$, though their daily returns have a weak correlation ($0.09$), showing distinct short-term dynamics.
@@ -100,7 +100,7 @@ The final LSTM receives a 3D input tensor of shape `(Batch_Size, 30, 17)`. The 1
 
 ---
 
-## 🧪 Experimentation Journey & Model Ablation
+##  Experimentation Journey & Model Ablation
 
 The project underwent 17 iterative ablation experiments to arrive at the optimal feature combination:
 
@@ -113,20 +113,20 @@ The project underwent 17 iterative ablation experiments to arrive at the optimal
 
 ---
 
-## ⚖️ Model Comparison: Standalone LSTM vs. LSTM + XGBoost
+##  Model Comparison: Standalone LSTM vs. LSTM + XGBoost
 
 A hybrid architecture was tested by extracting the 64-dimensional latent representation from the LSTM's dense layer and training an XGBoost Regressor on top of the learned embeddings:
 
 | Model Architecture | MAPE | RMSE | $R^2$ Score | Production Decision |
 | :--- | :---: | :---: | :---: | :---: |
-| **Standalone Deep LSTM (Final)** | **4.35%** (3.20% test) | **$5,537.18** ($3,812.59) | **0.8889** (0.9539) | ✅ **Selected for Deployment** |
-| **LSTM + XGBoost Hybrid** | 7.19% | $10,174.23 | 0.6718 | ❌ Rejected (High Variance) |
+| **Standalone Deep LSTM (Final)** | **4.35%** (3.20% test) | **$5,537.18** ($3,812.59) | **0.8889** (0.9539) |  **Selected for Deployment** |
+| **LSTM + XGBoost Hybrid** | 7.19% | $10,174.23 | 0.6718 |  Rejected (High Variance) |
 
 **Conclusion:** The Standalone LSTM demonstrated superior generalization on the out-of-sample test set. The hybrid XGBoost layer introduced tree-based discretization errors that degraded continuous temporal predictions.
 
 ---
 
-## 🧠 Final Model Architecture & Performance Metrics
+##  Final Model Architecture & Performance Metrics
 
 ### Neural Network Topology
 ```
@@ -162,7 +162,7 @@ MAPE : 4.35% (Alternative Evaluation Run: RMSE $5,211.90, R² 0.9138)
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ```
 ├── .github/
@@ -208,7 +208,7 @@ MAPE : 4.35% (Alternative Evaluation Run: RMSE $5,211.90, R² 0.9138)
 
 ---
 
-## 💻 Streamlit Financial Terminal Features
+##  Streamlit Financial Terminal Features
 
 1. **Top KPI Bar**: Real-time cards displaying Current BTC Price, Next-Day Forecast, Expected % Movement, Model $R^2$ Benchmark, and 30-Day Mean Error.
 2. **Hero Prediction Card**: Glowing Bitcoin Orange card showing current closing price, target forecast price, and dynamic green/red movement badges.
@@ -222,7 +222,7 @@ MAPE : 4.35% (Alternative Evaluation Run: RMSE $5,211.90, R² 0.9138)
 
 ---
 
-## ⚡ Automated Data Synchronization & Prediction Pipeline
+##  Automated Data Synchronization & Prediction Pipeline
 
 The standalone script `src/update_pipeline.py` can be run manually, locally via cron, or through GitHub Actions.
 
@@ -240,7 +240,7 @@ The `.github/workflows/update_prediction.yml` action runs daily at `00:30 UTC`:
 
 ---
 
-## 🗄️ Persistent SQLite Prediction History
+##  Persistent SQLite Prediction History
 
 The database is stored at `data/prediction_history.db` under the `predictions` table:
 
@@ -266,7 +266,7 @@ CREATE TABLE predictions (
 
 ---
 
-## 🚀 Local Installation & Setup
+##  Local Installation & Setup
 
 ### Prerequisites
 - Python 3.10, 3.11, or 3.12
@@ -303,7 +303,7 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
-## ☁️ Streamlit Cloud Deployment Guide
+##  Streamlit Cloud Deployment Guide
 
 1. Push your repository to GitHub.
 2. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/).
@@ -315,7 +315,7 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
-## ⚠️ Limitations & Risk Factors
+##  Limitations & Risk Factors
 
 - **Black Swan Events**: Macroeconomic crises, regulatory announcements, and crypto exchange shocks cannot be fully anticipated by historical time series.
 - **Market Gaps**: Non-trading weekend gaps in stock markets require forward-filling macro indicators.
@@ -324,14 +324,14 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
-## 📜 Disclaimer
+##  Disclaimer
 
-> **⚠️ Financial Disclaimer:**
+> ** Financial Disclaimer:**
 > This application provides experimental machine-learning forecasts based on historical market data. Bitcoin prices are highly volatile and affected by events that may not be captured by the model. Predictions are strictly for educational and research purposes, do not constitute financial advice, and should never be treated as guaranteed future prices.
 
 ---
 
-## 👨‍💻 Author & Acknowledgments
+##  Author & Acknowledgments
 
 **Developed by:** Shivam Ahirwar  
 **LinkedIn:** [https://www.linkedin.com/in/shivam-ahirwar-425293311/](https://www.linkedin.com/in/shivam-ahirwar-425293311/)  
